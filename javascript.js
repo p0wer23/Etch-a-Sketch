@@ -1,6 +1,13 @@
 const container = document.querySelector('.container');
 createGrid();
 
+//Destect hover
+const gridBlocks = Array.from(document.querySelectorAll('.container > div'))
+gridBlocks.forEach( (gridBlocks) => { gridBlocks.addEventListener('mouseover', (e) => changeColour(e.target)); })
+
+
+
+
 //creates grid
 function createGrid()
 {
@@ -12,12 +19,22 @@ function createGrid()
         for (let j=0; j<16; j++)
         {
             const newGridBlock = document.createElement('div');
-            newGridBlock.style.height = "20px";
-            newGridBlock.style.width = "20px";
+            newGridBlock.style.height = "40px";
+            newGridBlock.style.width = "40px";
             newGridBlock.style.border = "1px solid black";
+            newGridBlock.style.background = "white"
             GridRow.appendChild(newGridBlock);
         }
         container.appendChild(GridRow)
     }
     return 0;
+}
+
+//Changes colour: black <-> white
+function changeColour(gBlock)
+{
+    if (gBlock.style.background === 'white')
+        gBlock.style.background = 'black'
+    else
+        gBlock.style.background = 'white'
 }
